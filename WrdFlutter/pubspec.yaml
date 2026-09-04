@@ -1,0 +1,63 @@
+name: wrd
+description: "وِرْد — WRD. A reminder app for your daily awrād. وِردُكَ نُورُك."
+publish_to: "none"
+version: 0.8.0+1
+
+environment:
+  sdk: ^3.6.0 # Flutter 3.27+ (Color.withValues, DialogThemeData)
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # Settings + state persistence (JSON file in Application Support — same
+  # file name as the Swift app, so an existing iPhone install carries over).
+  shared_preferences: ^2.3.0
+  path_provider: ^2.1.4
+
+  # Location → country → prayer-time method (never leaves the device).
+  geolocator: ^13.0.1
+  geocoding: ^3.0.0
+
+  # Adhan + gate reminders, scheduled locally.
+  flutter_local_notifications: ^19.0.0
+  timezone: ^0.10.0
+
+  # Hijri date (Umm al-Qura).
+  hijri: ^3.0.0
+
+  # Circles: QR invitations + WhatsApp-friendly sharing.
+  qr_flutter: ^4.1.0
+  share_plus: ^10.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.14.3
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icon/
+
+# App icon — the interlaced shamsa. Regenerate every platform size with:
+#   dart run flutter_launcher_icons
+# Light face (parchment) is the default; iOS 18 dark/tinted and Android
+# adaptive/themed variants come from the same vector (see assets/icon/).
+flutter_launcher_icons:
+  # iOS catalog is hand-set (single-size 1024 light/dark/tinted) — keep false.
+  ios: false
+  image_path_ios: "assets/icon/icon-light.png"
+  remove_alpha_ios: true
+  image_path_ios_dark_transparent: "assets/icon/icon-dark-transparent.png"
+  image_path_ios_tinted_grayscale: "assets/icon/icon-tinted.png"
+  desaturate_tinted_to_grayscale_ios: true
+  android: true
+  image_path_android: "assets/icon/icon-dark.png"
+  adaptive_icon_background: "#F7F1E2"
+  adaptive_icon_foreground: "assets/icon/icon-android-foreground-light.png"
+  adaptive_icon_monochrome: "assets/icon/icon-android-mono.png"
+  min_sdk_android: 23
